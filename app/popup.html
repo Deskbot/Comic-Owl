@@ -2,9 +2,12 @@
 <html>
     <head>
         <title>Web Owl Popup</title>
-        <link rel="stylesheet" href="popup.css">
-        <script src="jquery.js"></script>
-        <script src="popup.js" defer></script>
+        <link href="css/popup.css" rel="stylesheet">
+        <script src="js/jquery.js"></script>
+        <script src="js/classes/PageList.js" defer></script>
+        <script src="js/classes/Link.js" defer></script>
+        <script src="js/util.js" defer></script>
+        <script src="js/popup.js" defer></script>
     </head>
     <body>
         <label id="track-page-label" for="track-page">Track This Page</label> <input id="track-page" name="track-page" type="checkbox">
@@ -27,11 +30,14 @@
         
     </body>
     <template id="page-row-template">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>       
+        <tr class="data" data-href="">
+            <td class="name"></td>
+            <td class="chapter"></td>
+            <td class="page"></td>
+            <td class="options">
+                <button class="edit"></button>
+                <button class="delete"></button>
+            </td>       
         </tr>
     </template>
     <template id="new-page-template">

@@ -1,26 +1,51 @@
 //functions
 /*function () {
-	
+    
 }*/
 
 //globals
+let pageList = new PageList();
 
-let newPageTemplate = $($('#new-page-template').html());
-let pageList = $('#page-list tbody');
+let pageInputTemplate = $($('#new-page-template').html());
+let pageRowTemplate = $($('#page-row-template').html());
+let pageListElem = $('#page-list tbody');
 
 //listeners
 
-pageList.on('keypress', '.input input[type="text"]', function(event) {
-	if (event.which === 13) {
-		let $this = $(this);
-
-	}
-});
-
 $('#new-page').on('click', function() {
-	let inputRow = newPageTemplate.clone();
-	pageList.append(inputRow);
+    let inputRow = pageInputTemplate.clone();
+    pageListElem.append(inputRow);
+    inputRow.find('input[name="name"]').focus();
 });
+
+pageListElem.on('keypress', '.input input[type="text"]', function(event) {
+    if (event.which === 13) {
+        let $this = $(this);
+        let $thisRow = $this.parentsUntil('tbody').last();
+
+        let name = $thisRow.find('input[name="name"]').val();
+        let rawUrl = $thisRow.find('input[name="url"]').val();
+
+        let id = pageList.addNew(name, rawUrl);
+        let html = pageList.list[id].toHtml();
+
+        a = $this;
+        b = $thisRow;
+
+        $thisRow.remove();
+
+        pageListElem.append(html);
+    }
+});
+
+pageListElem.on('click', 'tr.data', function() {
+    let $this = $(this);
+    let redirectUrl = $this.data('href');
+
+    chrome.tabs.create({url: redirectUrl});
+
+});
+
 
 
 
