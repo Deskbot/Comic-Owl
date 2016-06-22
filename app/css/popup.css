@@ -1,3 +1,5 @@
+/* general */
+
 body {
     font-family: Arial;
     font-size: 13px;
@@ -6,6 +8,12 @@ body {
     -webkit-user-select: none;
     width: 555px;
 }
+
+input[type="text"] {
+    width: 100%;
+}
+
+/*  */
 
 #track-page {
     height: 15px;

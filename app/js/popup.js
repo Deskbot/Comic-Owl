@@ -1,7 +1,7 @@
 //functions
-function () {
+/*function () {
 	
-}
+}*/
 
 //globals
 
