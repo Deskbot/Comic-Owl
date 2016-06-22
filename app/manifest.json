@@ -19,14 +19,13 @@
         "default_popup": "popup.html"
     },
     
-   // "content_scripts": [
-   //     {
-   //         "matches": ["http://*/*", "https://*/*"],
-   //         "css": ["background.css"],
-   //         "js": ["jquery.js","background.js"],
-    //        "run_at": "document_end"
-   //    }
-    //],
+   "content_scripts": [
+        {
+            "matches": ["http://*/*", "https://*/*"],
+            "js": ["js/background.js"],
+            "run_at": "document_end"
+        }
+    ],
     
     "permissions": [
         "storage",
