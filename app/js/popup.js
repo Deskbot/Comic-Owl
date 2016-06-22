@@ -4,11 +4,11 @@
 }*/
 
 //globals
-let pageList = new PageList();
-
 let pageInputTemplate = $($('#new-page-template').html());
 let pageRowTemplate = $($('#page-row-template').html());
 let pageListElem = $('#page-list tbody');
+
+let pageList = new PageList(pageListElem);
 
 //listeners
 

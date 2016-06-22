@@ -1,19 +1,31 @@
+/*
+ * names in chrome storage:
+ ** pageList is the list of elements
+*/
+
 let PageList = function() {
-    function PageList() {
+    function PageList(elem) {
         let self = this;
 
+        this.elem = elem;
         this.list = [];
 
         chrome.storage.local.get('pageList', function(items) {
-            let list = items.pageList;
+            if (items.pageList instanceof Array) {
+                let list = items.pageList;
 
-            if (list instanceof Array) {
                 for (let i=0; i < list.length; i++) {
                     self.add(JSON.parse(list[i]));
                 }
+
+                self.displayAll();
             }
         });
     }
+
+    //attributes
+
+
 
     //methods
 
@@ -29,6 +41,8 @@ let PageList = function() {
             chapter: linkData.chapter,
             latestUrl: linkData.latestUrl
         });
+
+        this.saveList();
 
         return linkId;
     }
@@ -46,9 +60,34 @@ let PageList = function() {
             latestUrl: null
         });
 
+        this.saveList();
+
         return linkId;
     }
 
+    PageList.prototype.saveList = function() {
+        let jsonList = [];
+
+        for (let i=0; i < this.list.length; i++) {
+            jsonList[i] = this.list[i].serialise();
+        }
+
+        let storage = {
+            pageList: jsonList
+        };
+
+        chrome.storage.local.set(storage);
+    }
+
+    PageList.prototype.displayAll = function() {
+        for (let i=0; i < this.list.length; i++) {
+            this.display(i);
+        }
+    }
+
+    PageList.prototype.display = function(id) {
+        this.elem.append(this.list[id].toHtml());
+    }
 
     return PageList;
 }();
