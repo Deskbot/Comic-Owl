@@ -39,12 +39,12 @@ let Link = function() {
     Link.prototype.toHtmlElem = function() {
         let pageRow = pageRowTemplate.clone();
 
-        console.log(this.data);
-        a = pageRow
+        let name = pageRow.find('.name');
 
         pageRow.attr('data-number', this.number);
-        pageRow.attr('data-href', this.data.url);
-        pageRow.find('.name').html(this.data.name);
+        pageRow.attr('data-href', this.data.url); //legacy
+        name.html(this.data.name);
+        name.attr('data-href', this.data.url);
         pageRow.find('.chapter').html(this.data.chapter === null ? "" : this.data.chapter);
         pageRow.find('.page').html(this.data.page === null ? "" : this.data.page);
 

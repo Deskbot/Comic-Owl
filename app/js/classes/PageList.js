@@ -29,6 +29,10 @@ let PageList = function() {
 
     //methods
 
+    PageList.prototype.get = function(num) {
+        return this.list[num];
+    }
+
     PageList.prototype.add = function(linkData) {
         let listLen = this.list.push(null);
         let linkId = listLen - 1;
@@ -84,6 +88,11 @@ let PageList = function() {
 
     PageList.prototype.display = function(id) {
         this.elem.append(this.list[id].toHtml());
+    }
+
+    PageList.prototype.delete = function(index) {
+        this.list.remove(index);
+        this.saveList();
     }
 
     return PageList;

@@ -13,18 +13,8 @@ input[type="text"] {
     width: 100%;
 }
 
-.options button {
-    background-size: contain;
-    height: 15px;
-    width: 15px;
-}
-
-.options .edit {
-    background-image: url('/img/Pencil.png');
-}
-
-.options .delete {
-    background-image: url('/img/Trash Can.png');
+.hidden {
+    display: none;
 }
 
 #track-page {
@@ -44,7 +34,34 @@ input[type="text"] {
 }
 
 #page-list td {
-
-    width: 25%;
+    
 }
 
+/* option buttons */
+
+.options {
+    float: right;
+}
+
+.options button {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
+}
+
+.options .cancel {
+    background-image: url('/img/Cancel.png');
+}
+
+.options .accept {
+    background-image: url('/img/Tick.png');
+}
+
+.options .edit {
+    background-image: url('/img/Pencil.png');
+}
+
+.options .delete {
+    background-image: url('/img/Trash Can.png');
+}
