@@ -29,18 +29,15 @@ pageListElem.on('keypress', '.input input[type="text"]', function(event) {
         let id = pageList.addNew(name, rawUrl);
         let html = pageList.list[id].toHtml();
 
-        a = $this;
-        b = $thisRow;
-
         $thisRow.remove();
 
         pageListElem.append(html);
     }
 });
 
-pageListElem.on('click', 'tr.data', function() {
+pageListElem.on('click', '.data', function() {
     let $this = $(this);
-    let redirectUrl = $this.data('href');
+    let redirectUrl = $this.attr('data-href');
 
     chrome.tabs.create({url: redirectUrl});
 

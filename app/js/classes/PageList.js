@@ -54,10 +54,7 @@ let PageList = function() {
 
         newLink.setData({
             name: name,
-            rawUrl: url,
-            page: null,
-            chapter: null,
-            latestUrl: null
+            rawUrl: url
         });
 
         this.saveList();
