@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Owl Popup</title>
+        <link rel="stylesheet" href="popup.css">
+        <script src="jquery.js"></script>
+        <script src="popup.js" defer></script>
+    </head>
+    <body>
+        <label id="track-page-label" for="track-page">Track This Page</label> <input id="track-page" name="track-page" type="checkbox">
+        <button id="new-page">New Page</button>
+        <hr>
+        <table id="page-list">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Chapter</td>
+                    <td>Page</td>
+                    <td>Options</td>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+
+        
+    </body>
+    <template id="page-row-template">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>       
+        </tr>
+    </template>
+    <template id="new-page-template">
+        <tr class="input">
+            <td>
+                <input type="text" name="name" placeholder="name">
+            </td>
+            <td colspan="3">
+                <input type="text" name="url" placeholder="URL: use %c and %p for chapter and page numbers.">
+            </td>
+        </tr>
+    </template>
+</html>

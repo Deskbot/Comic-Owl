@@ -1,0 +1,30 @@
+body {
+    font-family: Arial;
+    font-size: 13px;
+    line-height: 15px;
+    max-height: 200px;
+    -webkit-user-select: none;
+    width: 555px;
+}
+
+#track-page {
+    height: 15px;
+    margin: 0 4px;
+    vertical-align: bottom;
+    width: 15px;
+}
+
+#track-page-label {
+    font-weight: bold;
+}
+
+#page-list {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#page-list td {
+
+    width: 25%;
+}
+
