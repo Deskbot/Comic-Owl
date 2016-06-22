@@ -38,33 +38,18 @@ let PageList = function() {
         let linkId = listLen - 1;
         let newLink = this.list[linkId] = new Link(linkId);
 
-        newLink.setData({
-            name: linkData.name,
-            rawUrl: linkData.rawUrl,
-            page: linkData.page,
-            chapter: linkData.chapter,
-            latestUrl: linkData.latestUrl
-        });
+        newLink.setData(linkData);
+
+        return linkId;
+    };
+
+    PageList.prototype.addNew = function(linkData) {
+        let linkId = this.add(linkData);
 
         this.saveList();
 
         return linkId;
-    }
-
-    PageList.prototype.addNew = function(name, url) {
-        let listLen = this.list.push(null);
-        let linkId = listLen - 1;
-        let newLink = this.list[linkId] = new Link(linkId);
-
-        newLink.setData({
-            name: name,
-            rawUrl: url
-        });
-
-        this.saveList();
-
-        return linkId;
-    }
+    };
 
     PageList.prototype.saveList = function() {
         let jsonList = [];
@@ -78,21 +63,26 @@ let PageList = function() {
         };
 
         chrome.storage.local.set(storage);
-    }
+    };
 
     PageList.prototype.displayAll = function() {
         for (let i=0; i < this.list.length; i++) {
             this.display(i);
         }
-    }
+    };
 
     PageList.prototype.display = function(id) {
         this.elem.append(this.list[id].toHtml());
-    }
+    };
 
     PageList.prototype.delete = function(index) {
         this.list.remove(index);
         this.saveList();
+    };
+
+    PageList.prototype.edit = function(number) {
+        //provisional
+        this.elem.children('tr:eq(' + number + ')').find('.edit').click();
     }
 
     return PageList;

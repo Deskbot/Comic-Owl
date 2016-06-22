@@ -4,6 +4,7 @@ let Link = function() {
         this.data = {
             name: "",
             rawUrl: "",
+            hostname: "",
             page: "",
             chapter: "",
             latestUrl: ""

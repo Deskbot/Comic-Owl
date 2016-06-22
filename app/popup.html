@@ -4,8 +4,9 @@
         <title>Web Owl Popup</title>
         <link href="css/popup.css" rel="stylesheet">
         <script src="js/jquery.min.js"></script>
-        <script src="js/classes/PageList.js" defer></script>
         <script src="js/classes/Link.js" defer></script>
+        <script src="js/classes/PageList.js" defer></script>
+        <script src="js/classes/Tracker.js" defer></script>
         <script src="js/util.js" defer></script>
         <script src="js/popup.js" defer></script>
     </head>
@@ -42,9 +43,12 @@
     </template>
     <template id="edit-row-template">
         <tr class="editing">
-            <td class="name"><input name="name" type="text"></td>
-            <td class="chapter"><input name="chapter" type="number"></td>
-            <td class="page"><input name="page" type="number"></td>
+            <td class="name">
+                <input name="name" type="text" placeholder="name">
+                <input name="rawUrl" type="text" placeholder="URL: use %c and %p for chapter and page numbers.">
+            </td>
+            <td class="chapter"><input name="chapter" type="number" placeholder="Chapter"></td>
+            <td class="page"><input name="page" type="number" placeholder="Page"></td>
             <td class="options">
                 <button class="accept"></button>
                 <button class="cancel"></button>
