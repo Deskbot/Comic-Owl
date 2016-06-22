@@ -13,7 +13,19 @@ input[type="text"] {
     width: 100%;
 }
 
-/*  */
+.options button {
+    background-size: contain;
+    height: 15px;
+    width: 15px;
+}
+
+.options .edit {
+    background-image: url('/img/Pencil.png');
+}
+
+.options .delete {
+    background-image: url('/img/Trash Can.png');
+}
 
 #track-page {
     height: 15px;
