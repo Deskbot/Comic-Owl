@@ -22,7 +22,7 @@
    "content_scripts": [
         {
             "matches": ["http://*/*", "https://*/*"],
-            "js": ["js/background.js"],
+            "js": ["js/classes/Link.js", "js/background.js"],
             "run_at": "document_end"
         }
     ],

@@ -1,6 +1,6 @@
 function getFullHtmlOfOrphan(elem) {
     return elem.wrap('<div>').parent().html();
-}
+};
 
 function urlToHostname(url) {
     let startPos = url.indexOf('://') + 3;
@@ -8,11 +8,15 @@ function urlToHostname(url) {
     let endPos = pathPos === -1 ? url.length : pathPos;
 
     return url.substring(startPos, endPos);
-}
+};
+
+Array.prototype.min = function() {
+  return Math.min.apply(null, this);
+};
 
 Array.prototype.remove = function(index) {
     this.splice(index, 1);
-}
+};
 
 /*
 

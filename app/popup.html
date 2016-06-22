@@ -28,41 +28,42 @@
             </tbody>
         </table>
 
+        <!-- templates -->
         
+        <template id="page-row-template">
+            <tr class="data">
+                <td class="name"></td>
+                <td class="chapter"></td>
+                <td class="page"></td>
+                <td class="options">
+                    <button class="edit"></button>
+                    <button class="delete"></button>
+                </td>       
+            </tr>
+        </template>
+        <template id="edit-row-template">
+            <tr class="editing">
+                <td class="name">
+                    <input name="name" type="text" placeholder="name">
+                    <input name="rawUrl" type="text" placeholder="URL: use %c and %p for chapter and page numbers.">
+                </td>
+                <td class="chapter"><input name="chapter" type="number" placeholder="Chapter"></td>
+                <td class="page"><input name="page" type="number" placeholder="Page"></td>
+                <td class="options">
+                    <button class="accept"></button>
+                    <button class="cancel"></button>
+                </td>       
+            </tr>
+        </template>
+        <template id="new-page-template">
+            <tr class="input">
+                <td>
+                    <input type="text" name="name" placeholder="name">
+                </td>
+                <td colspan="3">
+                    <input type="text" name="url" placeholder="URL: use %c and %p for chapter and page numbers.">
+                </td>
+            </tr>
+        </template>
     </body>
-    <template id="page-row-template">
-        <tr class="data">
-            <td class="name"></td>
-            <td class="chapter"></td>
-            <td class="page"></td>
-            <td class="options">
-                <button class="edit"></button>
-                <button class="delete"></button>
-            </td>       
-        </tr>
-    </template>
-    <template id="edit-row-template">
-        <tr class="editing">
-            <td class="name">
-                <input name="name" type="text" placeholder="name">
-                <input name="rawUrl" type="text" placeholder="URL: use %c and %p for chapter and page numbers.">
-            </td>
-            <td class="chapter"><input name="chapter" type="number" placeholder="Chapter"></td>
-            <td class="page"><input name="page" type="number" placeholder="Page"></td>
-            <td class="options">
-                <button class="accept"></button>
-                <button class="cancel"></button>
-            </td>       
-        </tr>
-    </template>
-    <template id="new-page-template">
-        <tr class="input">
-            <td>
-                <input type="text" name="name" placeholder="name">
-            </td>
-            <td colspan="3">
-                <input type="text" name="url" placeholder="URL: use %c and %p for chapter and page numbers.">
-            </td>
-        </tr>
-    </template>
 </html>

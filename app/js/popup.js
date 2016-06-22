@@ -8,29 +8,39 @@ let pageInputTemplate = $($('#new-page-template').html());
 let pageRowTemplate = $($('#page-row-template').html());
 let editRowTemplate = $($('#edit-row-template').html());
 let pageListElem = $('#page-list tbody');
+let trackPageElem = $('#track-page');
 
 let pageList = new PageList(pageListElem);
 let tracker = new Tracker();
 
 //listeners
 
-$('#track-page').on('click', function() {
+trackPageElem.on('click', function() {
+    let self = this;
+
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
         let tab = tabs[0];
         let isNew = tracker.add(tab.url);
 
-        if (isNew) {
-            let linkData = {
-                name: tab.title,
-                rawUrl: urlToHostName(tab.url),
-                chapter: 0,
-                page: 0
-            };
+        if (self.checked) {
+            if (isNew) {
+                let rawUrl = Link.necessaryFragment(tab.url);
+                let linkData = {
+                    name: tab.title,
+                    baseUrl: rawUrl,
+//                    hostname: hostname,
+                    chapter: 0,
+                    page: 0
+                };
 
-            let linkId = pageList.addNew(linkData);
+                let linkId = pageList.addNew(linkData);
 
-            pageList.display(linkId);
-            pageList.edit(linkId);
+                pageList.display(linkId);
+                pageList.edit(linkId);
+            }
+
+        } else {
+            tracker.delete(Link.necessaryFragment(tab.url));
         }
     });
 });
@@ -49,7 +59,7 @@ pageListElem.on('keypress', '.input input[type="text"]', function(event) {
         let name = $thisRow.find('input[name="name"]').val();
         let rawUrl = $thisRow.find('input[name="url"]').val();
 
-        let id = pageList.addNew({name: name, rawUrl: rawUrl});
+        let id = pageList.addNew({name: name, baseUrl: rawUrl});
         let html = pageList.list[id].toHtml();
 
         $thisRow.remove();
@@ -101,7 +111,7 @@ function finishEditCallback(event) {
     let $thisRow = $this.parentsUntil('tbody').last();
     let data = {
         name: $thisRow.find('input[name="name"]').val(),
-        rawUrl: $thisRow.find('input[name="rawUrl"]').val(),
+        baseUrl: $thisRow.find('input[name="rawUrl"]').val(),
         chapter: $thisRow.find('input[name="chapter"]').val(),
         page: $thisRow.find('input[name="page"]').val()
     };
