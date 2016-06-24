@@ -9,6 +9,10 @@ body {
     width: 555px;
 }
 
+input[type="text"], input[type="number"] {
+    outline: none;
+}
+
 input[type="text"] {
     width: 100%;
 }
@@ -16,6 +20,8 @@ input[type="text"] {
 .hidden {
     display: none;
 }
+
+/* track page */
 
 #track-page {
     height: 15px;
@@ -28,13 +34,52 @@ input[type="text"] {
     font-weight: bold;
 }
 
+/* page list */
+
 #page-list {
     border-collapse: collapse;
+    border-spacing: 20px;
+    margin: 10px 0;
     width: 100%;
 }
 
+#page-list tr {
+    border-color: #808080;
+    border-style: solid;
+    border-width: 1px 0;
+}
+
+#page-list th {
+    padding: 3px 0;
+}
+
+#page-list th.name {
+    text-align: left;
+}
+
+#page-list th.chapter, #page-list th.page {
+    text-align: right;
+}
+
 #page-list td {
-    
+    padding: 5px 0;
+    vertical-align: top;
+}
+
+#page-list td.chapter, #page-list td.page {
+    text-align: right;
+    width: 50px;
+}
+
+/* editing */
+
+#page-list .editing input[type="number"] {
+    width: 100%;
+}
+
+#page-list .editing .rawUrl {
+    position: absolute;
+    width: 555px;
 }
 
 /* option buttons */
