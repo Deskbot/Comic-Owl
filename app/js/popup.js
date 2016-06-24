@@ -133,7 +133,7 @@ function finishEditCallback(event) {
 
 pageListElem.on('keypress', '.editing input', function(event) {
     if (event.which === 13) {
-        finishEditCallback(event);
+        finishEditCallback.bind(this)(event);
     }
 });
 
