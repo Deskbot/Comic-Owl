@@ -1,9 +1,7 @@
 {
-    //required
-
     "manifest_version": 2,
     "name": "Web Owl",
-    "version": "0.0.0",
+    "version": "1.1.0",
 
     "description": "Keeps track of reading/watch position in online series.",
     "icons": {
