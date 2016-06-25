@@ -45,14 +45,16 @@ let Tracker = function() {
             this.addNew(hostname);
         }
 
-        console.log('newHost: ', newHost);
-
         return newHost;
     };
 
     Tracker.prototype.addNew = function(hostname) {
         this.list.push(hostname);
     };
+
+    Tracker.prototype.alter = function(number, newName) {
+        this.list[number] = Link.necessaryFragment(newName);
+    }
 
     Tracker.prototype.update = function() {
         chrome.storage.local.set({trackList: this.list});

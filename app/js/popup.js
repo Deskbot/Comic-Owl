@@ -140,7 +140,12 @@ function finishEditCallback(event) {
 
     //save changes
     let number = $thisRow.attr('data-number');
-    pageList.get(number).setData(data);
+    let currentLink = pageList.get(number);
+
+    tracker.alter(number, data.baseUrl);
+    tracker.update();
+
+    currentLink.setData(data);
     pageList.saveList();
 
     //turn it back
