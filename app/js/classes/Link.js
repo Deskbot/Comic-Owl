@@ -10,7 +10,7 @@ let Link = function() {
         };
 
         Object.defineProperty(this.data, 'url', {get: function() {
-            return this.lastestUrl = this.rawUrl.replace(Link.chapterPH, this.chapter).replace(Link.pagePH, this.page);
+            return this.latestUrl = this.rawUrl.replace(Link.chapterPH, this.chapter).replace(Link.pagePH, this.page);
         }});
         Object.defineProperty(this.data, 'baseUrl', {set: function(val) {
             this.rawUrl = val;
@@ -18,7 +18,7 @@ let Link = function() {
         }});
 /*
         this.data.addGetter('url', function(){
-            return this.lastestUrl = this.rawUrl.replace(Link.chapterPH, this.chapter).replace(Link.pagePH, this.page);
+            return this.latestUrl = this.rawUrl.replace(Link.chapterPH, this.chapter).replace(Link.pagePH, this.page);
         });*/
     }
 
