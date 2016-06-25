@@ -44,7 +44,7 @@
         <template id="edit-row-template">
             <tr class="editing">
                 <td class="name">
-                    <input name="name" type="text" placeholder="name">
+                    <input name="name" type="text" placeholder="Name">
                     <input name="rawUrl" type="text" placeholder="URL: use %c and %p for chapter and page numbers.">
                 </td>
                 <td class="chapter"><input name="chapter" type="number" placeholder="Chapter"></td>
@@ -57,13 +57,25 @@
         </template>
         <template id="new-page-template">
             <tr class="input">
-                <td>
-                    <input type="text" name="name" placeholder="name">
-                </td>
-                <td colspan="3">
+                <td colspan="4">
+                    <input type="text" name="name" placeholder="Name">
                     <input type="text" name="url" placeholder="URL: use %c and %p for chapter and page numbers.">
                 </td>
             </tr>
         </template>
     </body>
 </html>
+
+
+<!--
+<template id="new-page-template">
+    <tr class="input">
+        <td>
+            <input type="text" name="name" placeholder="name">
+        </td>
+        <td colspan="3">
+            <input type="text" name="url" placeholder="URL: use %c and %p for chapter and page numbers.">
+        </td>
+    </tr>
+</template>
+-->

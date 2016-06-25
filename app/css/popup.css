@@ -1,23 +1,51 @@
 /* general */
 
+html {
+    min-height: 100px;
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 body {
     font-family: Arial;
     font-size: 13px;
     line-height: 15px;
-    max-height: 200px;
     -webkit-user-select: none;
     width: 555px;
 }
 
-input[type="text"], input[type="number"] {
-    outline: none;
+input {
+    border-width: 2px;
 }
 
-input[type="text"] {
-    width: 100%;
+input[type="text"], input[type="number"] {
+    outline: none;
+    margin: 1px;
+    padding: 1px;
+}
+
+input[type="number"] {
+
 }
 
 .hidden {
+    display: none;
+}
+
+/* scroll bar */
+
+html::-webkit-scrollbar {
+    width: 10px;
+}
+html::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 7px;
+}
+html::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255,255,255,0.7);
+}
+html::-scrollbar-corner {
     display: none;
 }
 
@@ -47,66 +75,99 @@ input[type="text"] {
     border-color: #808080;
     border-style: solid;
     border-width: 1px 0;
+    padd
 }
 
 #page-list th {
-    padding: 3px 0;
+    padding: 3px;
 }
 
 #page-list th.name {
     text-align: left;
+/*    width: calc(100% - 80px - 80px - 40px);*/
 }
 
 #page-list th.chapter, #page-list th.page {
     text-align: right;
+    width: 80px;
+}
+
+#page-list th.options {
+    width: 40px;
+}
+
+#page-list tbody tr.data:hover {
+    background-color: #D0D0D0;
+    cursor: pointer;
 }
 
 #page-list td {
-    padding: 5px 0;
+    padding: 4px 4px 3px 4px;
     vertical-align: top;
 }
 
 #page-list td.chapter, #page-list td.page {
     text-align: right;
-    width: 50px;
+}
+
+#page-list td.options {
+    text-align: center;
+}
+
+/* input */
+
+#page-list .input {
+    text-align: center;
+}
+
+#page-list .input input[name="name"] {
+    width: calc(33% - 8px);
+}
+
+#page-list .input input[name="url"] {
+    width: calc(66% - 8px);
 }
 
 /* editing */
 
-#page-list .editing input[type="number"] {
-    width: 100%;
+#page-list .editing td {
+    padding: 4px 2px;
 }
 
-#page-list .editing .rawUrl {
-    position: absolute;
-    width: 555px;
+#page-list .editing input[type="text"] {
+    width: calc(100% - 8px);
+}
+
+#page-list .editing input[type="number"] {
+    width: calc(100% - 8px)
+}
+
+#page-list .editing input[name="rawUrl"] {
+    margin-top: 4px;
 }
 
 /* option buttons */
 
-.options {
-    float: right;
-}
-
-.options button {
+#page-list .options button {
     background-size: contain;
     background-repeat: no-repeat;
     height: 15px;
+    vertical-align: middle;
     width: 15px;
 }
 
-.options .cancel {
+#page-list .options .cancel {
     background-image: url('/img/Cancel.png');
 }
 
-.options .accept {
+#page-list .options .accept {
     background-image: url('/img/Tick.png');
 }
 
-.options .edit {
+#page-list .options .edit {
     background-image: url('/img/Pencil.png');
 }
 
-.options .delete {
+#page-list .options .delete {
     background-image: url('/img/Trash Can.png');
 }
