@@ -107,7 +107,7 @@ html::-scrollbar-corner {
 }
 
 #page-list th.chapter, #page-list th.page {
-    text-align: right;
+    text-align: center;
     width: 80px;
 }
 
@@ -126,7 +126,7 @@ html::-scrollbar-corner {
 }
 
 #page-list td.chapter, #page-list td.page {
-    text-align: right;
+    text-align: center;
 }
 
 #page-list td.options {

@@ -24,7 +24,6 @@ trackPageElem.on('click', function() {
                 let linkData = {
                     name: tab.title,
                     baseUrl: rawUrl,
-//                    hostname: hostname,
                     chapter: 0,
                     page: 0
                 };
@@ -47,21 +46,33 @@ $('#new-page').on('click', function() {
     inputRow.find('input[name="name"]').focus();
 });
 
+function acceptNew() {
+    let $this = $(this);
+    let $thisRow = $this.parentsUntil('tbody').last();
+
+    let name = $thisRow.find('input[name="name"]').val();
+    let rawUrl = $thisRow.find('input[name="url"]').val();
+
+    let id = pageList.addNew({name: name, baseUrl: rawUrl});
+    let html = pageList.list[id].toHtml();
+
+    $thisRow.remove();
+
+    pageListElem.append(html);
+}
+
 pageListElem.on('keypress', '.input input[type="text"]', function(event) {
     if (event.which === 13) {
-        let $this = $(this);
-        let $thisRow = $this.parentsUntil('tbody').last();
-
-        let name = $thisRow.find('input[name="name"]').val();
-        let rawUrl = $thisRow.find('input[name="url"]').val();
-
-        let id = pageList.addNew({name: name, baseUrl: rawUrl});
-        let html = pageList.list[id].toHtml();
-
-        $thisRow.remove();
-
-        pageListElem.append(html);
+        acceptNew.bind(this)();
     }
+});
+
+pageListElem.on('click', '.input .accept', acceptNew);
+
+pageListElem.on('click', '.input .cancel', function() {
+    let $this = $(this);
+    let $thisRow = $this.parentsUntil('tbody').last();
+    $thisRow.remove();
 });
 
 pageListElem.on('click', '.data .name', function() {
