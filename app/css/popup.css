@@ -87,7 +87,7 @@ html::-scrollbar-corner {
 #page-list {
     border-collapse: collapse;
     border-spacing: 20px;
-    margin: 10px 0;
+    margin: 10px 0 5px 0;
     width: 100%;
 }
 
@@ -189,4 +189,16 @@ html::-scrollbar-corner {
 
 #page-list .options .delete {
     background-image: url('/img/Trash Can.png');
+}
+
+/* credits */
+
+#credits-button {
+    background-color: inherit;
+    border: none;
+    display: block;
+    font-size: 10px;
+    line-height: inherit;
+    margin-left: auto;
+    padding: 0 10px;
 }

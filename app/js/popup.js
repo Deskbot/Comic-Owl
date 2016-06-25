@@ -1,14 +1,10 @@
-//functions
-/*function () {
-    
-}*/
-
 //globals
 let pageInputTemplate = $($('#new-page-template').html());
 let pageRowTemplate = $($('#page-row-template').html());
 let editRowTemplate = $($('#edit-row-template').html());
 let pageListElem = $('#page-list tbody');
 let trackPageElem = $('#track-page');
+let creditsElem = $('#credits');
 
 let pageList = new PageList(pageListElem);
 let tracker = new Tracker();
@@ -153,4 +149,8 @@ pageListElem.on('click', '.editing .cancel', function() {
     let dataRow = $thisRow.prev();
     dataRow.removeClass('hidden');
     $thisRow.remove();
+});
+
+$('#credits-button').on('click', function(event) {
+    creditsElem.toggleClass('hidden');
 });
