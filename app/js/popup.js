@@ -83,6 +83,12 @@ pageListElem.on('click', '.delete', function() {
     
     tracker.delete(pageList.get(number).data.hostname);
     pageList.delete(number);
+
+    //decrement the number of all following rows
+    $thisRow.nextAll().each(function(num, elem) {
+        $elem = $(elem);
+        $elem.attr('data-number', $elem.attr('data-number') - 1);
+    });
     
     $thisRow.remove();
 });
@@ -148,29 +154,3 @@ pageListElem.on('click', '.editing .cancel', function() {
     dataRow.removeClass('hidden');
     $thisRow.remove();
 });
-
-
-
-//chrome.tabs.sendMessage(tabs[0].id, {func: 'unscan'}); //send message
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-let template = $('template').first();
-let elem = $(template.html());
-
-//do stuff with elem
-
-otherElem.append(elem);
-*/
