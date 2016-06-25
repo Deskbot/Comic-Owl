@@ -26,6 +26,8 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
 //listeners
 
 trackPageElem.on('click', function() {
+    if ((typeof url === 'undefined' || typeof title === 'undefined') && url !== null && title !== null) return alert('Wait a second for background data to load.');
+
     let isNew = !tracker.isTracking(url);
 
     if (this.checked) {
