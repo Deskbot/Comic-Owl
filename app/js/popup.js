@@ -94,7 +94,7 @@ pageListElem.on('click', '.input .cancel', function() {
 
 pageListElem.on('click', '.data .name, .data .chapter, .data .page', function() {
     let $this = $(this);
-    let redirectUrl = $this.attr('data-href');
+    let redirectUrl = $this.parentsUntil('tbody').first().attr('data-href');
 
     chrome.tabs.create({url: redirectUrl});
 

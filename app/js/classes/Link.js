@@ -72,7 +72,7 @@ let Link = function() {
         pageRow.attr('data-number', this.number);
         pageRow.attr('data-href', this.data.url);
         name.html(this.data.name);
-        name.attr('data-href', this.data.url);
+        //name.attr('data-href', this.data.url); //pretty sure not needed
         pageRow.find('.chapter').html(this.data.chapter === null ? "" : this.data.chapter);
         pageRow.find('.page').html(this.data.page === null ? "" : this.data.page);
 

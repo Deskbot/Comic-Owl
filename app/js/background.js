@@ -38,55 +38,45 @@ function checkToStore() {
                     chrome.storage.local.get('pageList', function(items) {
                         if (items.pageList instanceof Array) {
                             //console.log("is array 2");
-                            for (let j=0; j < items.pageList.length; j++) {
+                            
+                            let linkData = JSON.parse(items.pageList[i]);
 
-                                let linkData = JSON.parse(items.pageList[j]);
+                            //console.log(linkData);
 
-                                //console.log(linkData);
+                            if (linkData.hostname != '' && hostname.includes(linkData.hostname)) {
+                                //console.log("hostname match 2");
+                                let readData = getReadData(hostname, linkData);
 
-                                if (linkData.hostname != '' && hostname.includes(linkData.hostname)) {
-                                    //console.log("hostname match 2");
-                                    let readData = getReadData(hostname, linkData);
+                                //console.log(readData);
 
-                                    //console.log(readData);
+                                if (readData.chapter !== null && readData.chapter > linkData.chapter) {
+                                    //console.log('store 1');
 
-                                    if (readData.chapter !== null && readData.chapter > linkData.chapter) {
-                                        //console.log('store 1');
-                                        items.pageList.forEach(function(val, index, arr){
-                                            arr[index] = JSON.parse(val);
-                                        });
+                                    items.pageList[i] = JSON.parse(items.pageList[i]);
+                                    items.pageList[i].chapter = readData.chapter;
+                                    items.pageList[i].page = readData.page;
 
-                                        //console.log(items.pageList);
+                                    items.pageList[i] = JSON.stringify(items.pageList[i]);
 
-                                        //let arr = items.pageList.parseAll();
-                                        items.pageList[j].chapter = readData.chapter;
-                                        items.pageList[j].page = readData.page;
-                                        
+                                    store(items.pageList);
 
-                                        store(items.pageList);
+                                } else if (readData.page !== null && readData.page > linkData.page) {
+                                    //console.log('store 2');
 
-                                    } else if (readData.page !== null && readData.page > linkData.page) {
-                                        //console.log('store 2');
+                                    items.pageList[i] = JSON.parse(items.pageList[i]);
+                                    items.pageList[i].page = readData.page;
 
-                                        items.pageList.forEach(function(val, index, arr){
-                                            arr[index] = JSON.parse(val);
-                                        });
+                                    items.pageList[i] = JSON.stringify(items.pageList[i]);
 
-                                        //console.log(items.pageList);
-
-                                        //let arr = items.pageList.parseAll();
-
-                                        items.pageList[j].page = readData.page;
-                                        store(items.pageList);
-                                    } else {
-                                        //console.log('store 3');
-                                    }
-
-                                    //chrome.storage.local.get(null, function(i){//console.log(i)})
-
-
-                                    break;
+                                    store(items.pageList);
+                                } else {
+                                    //console.log('store 3');
                                 }
+
+                                //chrome.storage.local.get(null, function(i){//console.log(i)})
+
+
+                                break;
                             }
 
                         } else {

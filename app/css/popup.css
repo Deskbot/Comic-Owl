@@ -13,6 +13,10 @@ body {
     width: 555px;
 }
 
+button {
+    outline: none;
+}
+
 input {
     border-width: 2px;
 }
