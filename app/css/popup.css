@@ -1,8 +1,6 @@
 /* general */
 
 html {
-    min-height: 100px;
-    max-height: 400px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -29,6 +27,12 @@ input[type="number"] {
 
 }
 
+label {
+    font-weight: bold;
+}
+
+/* util */
+
 .hidden {
     display: none;
 }
@@ -36,17 +40,37 @@ input[type="number"] {
 /* scroll bar */
 
 html::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
 }
 html::-webkit-scrollbar-thumb {
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(0,0,0,0.3);
     border-radius: 7px;
 }
 html::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(0,0,0,0.7);
 }
 html::-scrollbar-corner {
     display: none;
+}
+
+/* controls */
+
+#controls {
+    vertical-align: middle;
+}
+
+/* new page */
+
+#new-page-span {
+    float: right;
+}
+
+#new-page {
+    background-image: url("/img/Plus.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
 }
 
 /* track page */
@@ -56,10 +80,6 @@ html::-scrollbar-corner {
     margin: 0 4px;
     vertical-align: bottom;
     width: 15px;
-}
-
-#track-page-label {
-    font-weight: bold;
 }
 
 /* page list */
@@ -84,7 +104,6 @@ html::-scrollbar-corner {
 
 #page-list th.name {
     text-align: left;
-/*    width: calc(100% - 80px - 80px - 40px);*/
 }
 
 #page-list th.chapter, #page-list th.page {

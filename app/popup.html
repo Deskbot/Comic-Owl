@@ -11,8 +11,14 @@
         <script src="js/popup.js" defer></script>
     </head>
     <body>
-        <label id="track-page-label" for="track-page">Track This Page</label> <input id="track-page" name="track-page" type="checkbox">
-        <button id="new-page">New Page</button>
+        <div id="controls">
+            <span id="track-page-span">
+                <label id="track-page-label" for="track-page">Track This Page</label> <input id="track-page" name="track-page" type="checkbox">
+            </span>
+            <span id="new-page-span">
+                <label id="new-page-label">Track New</label> <button id="new-page"></button>
+            </span>
+        </div>
         
         <table id="page-list">
             <thead>
