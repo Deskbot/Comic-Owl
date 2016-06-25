@@ -33,6 +33,7 @@ trackPageElem.on('click', function() {
     if (this.checked) {
         if (isNew) {
             tracker.add(url);
+            tracker.update();
 
             let rawUrl = Link.necessaryFragment(url);
             let linkData = {
@@ -70,8 +71,10 @@ function acceptNew() {
     let id = pageList.addNew({name: name, baseUrl: rawUrl});
     let html = pageList.list[id].toHtml();
 
-    $thisRow.remove();
+    tracker.add(rawUrl);
+    tracker.update();
 
+    $thisRow.remove();
     pageListElem.append(html);
 }
 

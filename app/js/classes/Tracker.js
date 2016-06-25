@@ -17,6 +17,8 @@ let Tracker = function() {
                     if (self.list.includes(tab.url)) {
                         trackPageElem.attr('checked', true);
                     }
+
+                    self.update();
                 });
             }
         });
@@ -31,6 +33,7 @@ let Tracker = function() {
 
         let newHost = true;
 
+        //has to check each part of the list for some reason
         for (let i=0; i < this.list; i++) {
             if (this.list[i].includes(hostname)) {
                 newHost = false;
@@ -40,8 +43,9 @@ let Tracker = function() {
 
         if (newHost) {
             this.addNew(hostname);
-            this.update();
         }
+
+        console.log('newHost: ', newHost);
 
         return newHost;
     };
