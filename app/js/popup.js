@@ -89,7 +89,7 @@ pageListElem.on('click', '.input .cancel', function() {
     $thisRow.remove();
 });
 
-pageListElem.on('click', '.data .name', function() {
+pageListElem.on('click', '.data .name, .data .chapter, .data .page', function() {
     let $this = $(this);
     let redirectUrl = $this.attr('data-href');
 
