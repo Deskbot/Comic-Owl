@@ -59,6 +59,12 @@ let Tracker = function() {
         this.list.remove(index);
 
         this.update();
+
+        return index;
+    }
+
+    Tracker.prototype.isTracking = function(hostname) {
+        return this.list.includes(hostname);
     }
 
     return Tracker;

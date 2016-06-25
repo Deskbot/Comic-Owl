@@ -5,39 +5,51 @@ let editRowTemplate = $($('#edit-row-template').html());
 let pageListElem = $('#page-list tbody');
 let trackPageElem = $('#track-page');
 let creditsElem = $('#credits');
+let url = null;
+let title = null;
 
 let pageList = new PageList(pageListElem);
 let tracker = new Tracker();
 
+//preparation
+
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
+    let tab = tabs[0];
+    url = tab.url;
+    title = tab.title;
+
+    if (tracker.isTracking(url)) {
+        trackPageElem.attr('checked', true);
+    }
+});
+
 //listeners
 
 trackPageElem.on('click', function() {
-    let self = this;
+    let isNew = !tracker.isTracking(url);
 
-    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
-        let tab = tabs[0];
-        let isNew = tracker.add(tab.url);
+    if (this.checked) {
+        if (isNew) {
+            tracker.add(url);
 
-        if (self.checked) {
-            if (isNew) {
-                let rawUrl = Link.necessaryFragment(tab.url);
-                let linkData = {
-                    name: tab.title,
-                    baseUrl: rawUrl,
-                    chapter: 0,
-                    page: 0
-                };
+            let rawUrl = Link.necessaryFragment(url);
+            let linkData = {
+                name: title,
+                baseUrl: rawUrl,
+                chapter: 0,
+                page: 0
+            };
 
-                let linkId = pageList.addNew(linkData);
+            let linkId = pageList.addNew(linkData);
 
-                pageList.display(linkId);
-                pageList.edit(linkId);
-            }
-
-        } else {
-            tracker.delete(Link.necessaryFragment(tab.url));
+            pageList.display(linkId);
+            pageList.edit(linkId);
         }
-    });
+
+    } else {
+        let index = tracker.delete(Link.necessaryFragment(url));
+        pageList.delete(index);
+    }
 });
 
 $('#new-page').on('click', function() {
@@ -89,15 +101,7 @@ pageListElem.on('click', '.delete', function() {
     let number = $thisRow.attr('data-number');
     
     tracker.delete(pageList.get(number).data.hostname);
-    pageList.delete(number);
-
-    //decrement the number of all following rows
-    $thisRow.nextAll().each(function(num, elem) {
-        $elem = $(elem);
-        $elem.attr('data-number', $elem.attr('data-number') - 1);
-    });
-    
-    $thisRow.remove();
+    pageList.delete(number, $thisRow);
 });
 
 pageListElem.on('click', '.edit', function() {

@@ -75,9 +75,21 @@ let PageList = function() {
         this.elem.append(this.list[id].toHtml());
     };
 
-    PageList.prototype.delete = function(index) {
+    PageList.prototype.delete = function(index, pageRow) {
         this.list.remove(index);
         this.saveList();
+
+        //decrement the number of all following rows
+        if (typeof pageRow === 'undefined') {
+            pageRow = this.elem.children('tr[data-number="' + index + '"]').first();
+        }
+
+        pageRow.nextAll().each(function(num, elem) {
+            $elem = $(elem);
+            $elem.attr('data-number', $elem.attr('data-number') - 1);
+        });
+
+        pageRow.remove();
     };
 
     PageList.prototype.edit = function(number) {
