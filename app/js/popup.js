@@ -5,39 +5,25 @@ let editRowTemplate = $($('#edit-row-template').html());
 let pageListElem = $('#page-list tbody');
 let trackPageElem = $('#track-page');
 let creditsElem = $('#credits');
-let url = null;
-let title = null;
 
 let pageList = new PageList(pageListElem);
 let tracker = new Tracker();
 
 //preparation
 
-chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
-    let tab = tabs[0];
-    url = tab.url;
-    title = tab.title;
-
-    if (tracker.isTracking(url)) {
-        trackPageElem.attr('checked', true);
-    }
-});
-
 //listeners
 
 trackPageElem.on('click', function() {
-    if ((typeof url === 'undefined' || typeof title === 'undefined') && url !== null && title !== null) return alert('Wait a second for background data to load.');
-
-    let isNew = !tracker.isTracking(url);
+    let isNew = !tracker.isTracking(tracker.currentUrl);
 
     if (this.checked) {
         if (isNew) {
-            tracker.add(url);
+            tracker.add(tracker.currentUrl);
             tracker.update();
 
-            let rawUrl = Link.necessaryFragment(url);
+            let rawUrl = Link.necessaryFragment(tracker.currentUrl);
             let linkData = {
-                name: title,
+                name: tracker.currentTitle,
                 baseUrl: rawUrl,
                 chapter: 0,
                 page: 0
@@ -50,7 +36,7 @@ trackPageElem.on('click', function() {
         }
 
     } else {
-        let index = tracker.delete(Link.necessaryFragment(url));
+        let index = tracker.delete(Link.necessaryFragment(tracker.currentUrl));
         pageList.delete(index);
     }
 });

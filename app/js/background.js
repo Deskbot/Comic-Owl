@@ -55,9 +55,9 @@ function checkToStore() {
                                     items.pageList[i] = JSON.parse(items.pageList[i]);
                                     items.pageList[i].chapter = readData.chapter;
                                     items.pageList[i].page = readData.page;
-
+                                    
                                     items.pageList[i] = JSON.stringify(items.pageList[i]);
-
+                                    
                                     store(items.pageList);
 
                                 } else if (readData.page !== null && readData.page > linkData.page) {
@@ -65,9 +65,9 @@ function checkToStore() {
 
                                     items.pageList[i] = JSON.parse(items.pageList[i]);
                                     items.pageList[i].page = readData.page;
-
+                                    
                                     items.pageList[i] = JSON.stringify(items.pageList[i]);
-
+                                    
                                     store(items.pageList);
                                 } else {
                                     //console.log('store 3');

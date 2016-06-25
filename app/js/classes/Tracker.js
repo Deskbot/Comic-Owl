@@ -14,7 +14,10 @@ let Tracker = function() {
                 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
                     let tab = tabs[0];
 
-                    if (self.list.includes(tab.url)) {
+                    self.currentUrl = tab.url;
+                    self.currentTitle = tab.title;
+
+                    if (self.isTracking(tab.url)) {
                         trackPageElem.attr('checked', true);
                     }
 
@@ -69,8 +72,15 @@ let Tracker = function() {
         return index;
     }
 
-    Tracker.prototype.isTracking = function(hostname) {
-        return this.list.includes(hostname);
+    Tracker.prototype.isTracking = function(url) {
+        for (let i=0; i < this.list.length; i++) {
+            if (url.includes(this.list[i])) {
+                return true;
+            }
+            
+        }
+
+        return false;
     }
 
     return Tracker;
