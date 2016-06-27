@@ -7,22 +7,22 @@ let Tracker = function() {
         let self = this;
         this.list = [];
 
+        chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
+            let tab = tabs[0];
+
+            self.currentUrl = tab.url;
+            self.currentTitle = tab.title;
+
+            if (self.isTracking(tab.url)) {
+                trackPageElem.attr('checked', true);
+            }
+
+            self.update();
+        });
+
         chrome.storage.local.get('trackList', function(items) {
             if (items.trackList instanceof Array) {
                 self.list = items.trackList;
-
-                chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
-                    let tab = tabs[0];
-
-                    self.currentUrl = tab.url;
-                    self.currentTitle = tab.title;
-
-                    if (self.isTracking(tab.url)) {
-                        trackPageElem.attr('checked', true);
-                    }
-
-                    self.update();
-                });
             }
         });
     }

@@ -73,10 +73,7 @@ function checkToStore() {
                                     //console.log('store 3');
                                 }
 
-                                //chrome.storage.local.get(null, function(i){//console.log(i)})
-
-
-                                break;
+                                //chrome.storage.local.get(null, function(i){//console.log(i)});
                             }
 
                         } else {
