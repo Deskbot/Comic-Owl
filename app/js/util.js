@@ -1,3 +1,9 @@
+function pls() {
+    chrome.storage.local.get(null, function(items) {
+        console.log(items);
+    });
+}
+
 function getFullHtmlOfOrphan(elem) {
     return elem.wrap('<div>').parent().html();
 };
