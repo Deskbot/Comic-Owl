@@ -31,7 +31,6 @@ let Link = function() {
     //methods
 
     Link.necessaryFragment = function(url) {
-        console.log(url);
         let cPos = url.indexOf(Link.chapterPH);
         let pPos = url.indexOf(Link.pagePH);
         let possible = [];

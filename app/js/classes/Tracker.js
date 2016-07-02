@@ -13,11 +13,12 @@ let Tracker = function() {
             self.currentUrl = tab.url;
             self.currentTitle = tab.title;
 
+            console.log(tab.url);
+            console.log(self.isTracking(tab.url));
+
             if (self.isTracking(tab.url)) {
                 trackPageElem.attr('checked', true);
             }
-
-            self.update();
         });
 
         chrome.storage.local.get('trackList', function(items) {
@@ -60,6 +61,7 @@ let Tracker = function() {
     }
 
     Tracker.prototype.update = function() {
+        console.trace(this.list);
         chrome.storage.local.set({trackList: this.list});
     };
 
@@ -67,13 +69,14 @@ let Tracker = function() {
         let index = this.list.indexOf(hostname);
         this.list.remove(index);
 
-        this.update();
+//        this.update();
 
         return index;
     }
 
     Tracker.prototype.isTracking = function(url) {
         for (let i=0; i < this.list.length; i++) {
+            console.log(url, this.list[i], url.includes(this.list[i]));
             if (url.includes(this.list[i])) {
                 return true;
             }

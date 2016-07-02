@@ -37,6 +37,7 @@ trackPageElem.on('click', function() {
 
     } else {
         let index = tracker.delete(Link.necessaryFragment(tracker.currentUrl));
+        tracker.update();
         pageList.delete(index);
     }
 });
@@ -92,6 +93,7 @@ pageListElem.on('click', '.delete', function() {
     let number = $thisRow.attr('data-number');
     
     tracker.delete(pageList.get(number).data.hostname);
+    tracker.update();
     pageList.delete(number, $thisRow);
 });
 
