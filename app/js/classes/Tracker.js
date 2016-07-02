@@ -7,26 +7,35 @@ let Tracker = function() {
         let self = this;
         this.list = [];
 
-        chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
-            let tab = tabs[0];
-
-            self.currentUrl = tab.url;
-            self.currentTitle = tab.title;
-
-            console.log(tab.url);
-            console.log(self.isTracking(tab.url));
-
-            if (self.isTracking(tab.url)) {
-                trackPageElem.attr('checked', true);
-            }
-        });
+        let def = new $.Deferred();
+        let items;
 
         chrome.storage.local.get('trackList', function(items) {
             if (items.trackList instanceof Array) {
                 self.list = items.trackList;
             }
+
+            def.resolve();
+        });
+
+        let prom = def.promise();
+
+        prom.then(function() {
+            chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
+                let tab = tabs[0];
+
+                self.currentUrl = tab.url;
+                self.currentTitle = tab.title;
+
+                if (self.isTracking(tab.url)) {
+                    trackPageElem.attr('checked', true);
+                }
+            });
         });
     }
+
+    //private functions
+
 
 
     //methods
@@ -61,7 +70,6 @@ let Tracker = function() {
     }
 
     Tracker.prototype.update = function() {
-        console.trace(this.list);
         chrome.storage.local.set({trackList: this.list});
     };
 
@@ -69,14 +77,12 @@ let Tracker = function() {
         let index = this.list.indexOf(hostname);
         this.list.remove(index);
 
-//        this.update();
-
         return index;
     }
 
     Tracker.prototype.isTracking = function(url) {
         for (let i=0; i < this.list.length; i++) {
-            console.log(url, this.list[i], url.includes(this.list[i]));
+            
             if (url.includes(this.list[i])) {
                 return true;
             }
