@@ -2,10 +2,10 @@ let hostname = window.location.href;
 
 function store(pageList) {
     ////console.log(pageList)
-
+    /*
     pageList.forEach(function(val, index, arr) {
         arr[index] = JSON.stringify(val);
-    });
+    });*/
 
     chrome.storage.local.set({pageList: pageList});
 }
