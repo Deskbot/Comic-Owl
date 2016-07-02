@@ -27,15 +27,16 @@ input[type="text"], input[type="number"] {
     padding: 1px;
 }
 
-input[type="number"] {
-
-}
-
 label {
     font-weight: bold;
 }
 
 /* util */
+
+.double-width {
+    display: inline-block;
+    width: 200%;
+}
 
 .hidden {
     display: none;
