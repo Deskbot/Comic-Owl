@@ -63,10 +63,10 @@
                     <input name="rawUrl" type="text" placeholder="URL: use %c and %p for chapter and page numbers.">
                 </td>
                 <td class="chapter">
-                    <input name="chapter" type="number" placeholder="Chapter">
+                    <input name="chapter" type="number" pattern="\d*" step="1" placeholder="Chapter">
                     <span class="double-width">Use %c and %p as placeholders in the URL</span>
                 </td>
-                <td class="page"><input name="page" type="number" placeholder="Page"></td>
+                <td class="page"><input name="page" type="number" pattern="\d*" step="1" placeholder="Page"></td>
                 <td class="options">
                     <button class="accept"></button>
                     <button class="cancel"></button>
@@ -87,17 +87,3 @@
         </template>
     </body>
 </html>
-
-
-<!--
-<template id="new-page-template">
-    <tr class="input">
-        <td>
-            <input type="text" name="name" placeholder="name">
-        </td>
-        <td colspan="3">
-            <input type="text" name="url" placeholder="URL: use %c and %p for chapter and page numbers.">
-        </td>
-    </tr>
-</template>
--->
