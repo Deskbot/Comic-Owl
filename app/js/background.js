@@ -49,18 +49,23 @@ function checkToStore() {
 
                                 //console.log(readData);
 
-                                if (readData.chapter !== null && readData.chapter > linkData.chapter) {
+                                let dataChapter = parseInt(readData.chapter);
+                                let dataPage = parseInt(readData.page);
+
+                                //console.log(readData.chapter, readData.page, dataChapter, dataPage);
+
+                                if (dataChapter !== NaN && dataChapter > parseInt(linkData.chapter)) {
                                     //console.log('store 1');
 
                                     items.pageList[i] = JSON.parse(items.pageList[i]);
-                                    items.pageList[i].chapter = readData.chapter;
-                                    items.pageList[i].page = readData.page;
+                                    items.pageList[i].chapter = dataChapter;
+                                    items.pageList[i].page = dataPage;
                                     
                                     items.pageList[i] = JSON.stringify(items.pageList[i]);
                                     
                                     store(items.pageList);
 
-                                } else if (readData.page !== null && readData.page > linkData.page) {
+                                } else if (dataPage !== NaN && dataPage > parseInt(linkData.page)) {
                                     //console.log('store 2');
 
                                     items.pageList[i] = JSON.parse(items.pageList[i]);
@@ -69,11 +74,7 @@ function checkToStore() {
                                     items.pageList[i] = JSON.stringify(items.pageList[i]);
                                     
                                     store(items.pageList);
-                                } else {
-                                    //console.log('store 3');
                                 }
-
-                                //chrome.storage.local.get(null, function(i){//console.log(i)});
                             }
 
                         } else {
