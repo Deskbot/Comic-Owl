@@ -4,6 +4,7 @@ let pageRowTemplate = $($('#page-row-template').html());
 let editRowTemplate = $($('#edit-row-template').html());
 let pageListElem = $('#page-list tbody');
 let trackPageElem = $('#track-page');
+let jsonControlsElem = $('#json-controls');
 let creditsElem = $('#credits');
 
 let pageList = new PageList(pageListElem);
@@ -164,6 +165,37 @@ pageListElem.on('click', '.editing .cancel', function() {
     $thisRow.remove();
 });
 
+$('#json-button').on('click', function(event) {
+    jsonControlsElem.toggleClass('hidden');
+});
+
+$('#export-json').on('click', function(event) {
+    chrome.storage.local.get(null, function(items) {
+        $('#json-out').val(JSON.stringify(items));
+    });
+});
+
+$('#import-json').on('click', function(event) {
+    let json = $('#json-in').val();
+
+    if (json != '') {
+        let obj = JSON.parse(json);
+
+        chrome.storage.local.set(obj);
+
+        pageList.empty();
+        pageList.formatStorageToMemory(obj.pageList);
+        tracker.list = obj.trackList;
+
+        $('#json-in').val('');
+        $('#json-out').val('');
+    }
+});
+
 $('#credits-button').on('click', function(event) {
     creditsElem.toggleClass('hidden');
+});
+
+$('#json-out').on('click', function(event) {
+    this.select();
 });

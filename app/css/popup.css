@@ -14,7 +14,14 @@ body {
 }
 
 button {
+    background-color: #DEDEDE;
+    border: 2px outset #DEDEDE;
     outline: none;
+    padding: 0;
+}
+
+button:active {
+    border-style: inset;
 }
 
 input {
@@ -100,7 +107,6 @@ html::-scrollbar-corner {
     border-color: #808080;
     border-style: solid;
     border-width: 1px 0;
-    padd
 }
 
 #page-list th {
@@ -196,14 +202,57 @@ html::-scrollbar-corner {
     background-image: url('/img/Trash Can.png');
 }
 
+/* footer */
+
+footer {
+
+}
+
+.elipsis-button {
+    background-color: inherit;
+    border-color: none;
+    border-style: none;
+    border-width: 0;
+    font-size: 10px;
+    line-height: inherit;
+}
+
+.elipsis-button {
+    border-style: initial;
+}
+
+/* json */
+
+#json-button {
+    padding-right: 20px;
+}
+
+#json-controls {
+    list-style-type: none;
+    margin: 0 20px;
+    padding: 0;
+}
+
+#json-controls button {
+    font-size: 12px;
+    padding: 1px 4px;
+}
+
+#json-controls textarea {
+    display: block;
+    height: 50px;
+    margin: 5px 0;
+    resize: none;
+    width: calc(100% - 6px);
+}
+
+#json-controls textarea:focus {
+    outline: 1px ridge #808080;
+}
+
 /* credits */
 
 #credits-button {
-    background-color: inherit;
-    border: none;
-    display: block;
-    font-size: 10px;
-    line-height: inherit;
-    margin-left: auto;
-    padding: 0 10px;
+    float: right;
+    padding-left: 20px;
 }

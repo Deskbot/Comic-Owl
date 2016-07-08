@@ -12,13 +12,7 @@ let PageList = function() {
 
         chrome.storage.local.get('pageList', function(items) {
             if (items.pageList instanceof Array) {
-                let list = items.pageList;
-
-                for (let i=0; i < list.length; i++) {
-                    self.add(JSON.parse(list[i]));
-                }
-
-                self.displayAll();
+                self.formatStorageToMemory(items.pageList);
             }
         });
     }
@@ -28,6 +22,13 @@ let PageList = function() {
 
 
     //methods
+    PageList.prototype.formatStorageToMemory = function(storageList) {
+        for (let i=0; i < storageList.length; i++) {
+            this.add(JSON.parse(storageList[i]));
+        }
+
+        this.displayAll();
+    }
 
     PageList.prototype.get = function(num) {
         return this.list[num];
@@ -64,6 +65,11 @@ let PageList = function() {
 
         chrome.storage.local.set(storage);
     };
+
+    PageList.prototype.empty = function() {
+        this.list = [];
+        this.elem.empty();
+    }
 
     PageList.prototype.displayAll = function() {
         for (let i=0; i < this.list.length; i++) {

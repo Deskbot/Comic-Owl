@@ -8,7 +8,6 @@ let Tracker = function() {
         this.list = [];
 
         let def = new $.Deferred();
-        let items;
 
         chrome.storage.local.get('trackList', function(items) {
             if (items.trackList instanceof Array) {
