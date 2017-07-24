@@ -1,7 +1,7 @@
-Web Owl
+Comic Owl
 =======
 
-Web Owl is a Chrome Extension that maintains a list of your web comics or any other web series and automatically updates what chapter and page you are on.
+Comic Owl is a Chrome Extension that maintains a list of your web comics or any other web series and automatically updates what chapter and page you are on.
 
 A simple click will take you directly back to where you left off.
 
